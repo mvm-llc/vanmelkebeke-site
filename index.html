@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Van Melkebeke LLC</title>
+<meta name="description" content="Van Melkebeke LLC — Art, Sport, Technology. A New York-based holding company.">
+<style>
+@font-face {
+  font-family: 'GT Alpina Fine';
+  src: url('gt-alpina-fine.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --green: #056839;
+  --green-light: #0a7d47;
+  --orange: #f1592a;
+  --sun: #f7941d;
+  --red: #ef4036;
+  --mint: #2bb673;
+  --aqua: #13a89e;
+  --cream: #faf9f6;
+  --dark: #0a0a0a;
+  --gray: #777;
+  --gray-light: #e8e6e1;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'GT Alpina Fine', Georgia, 'Times New Roman', serif;
+  background: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 28px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+
+nav.scrolled {
+  background: rgba(250,249,246,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gray-light);
+  padding: 18px 48px;
+}
+
+.nav-logo { height: 36px; transition: height 0.4s ease; }
+nav.scrolled .nav-logo { height: 30px; }
+
+.nav-links { display: flex; gap: 36px; list-style: none; }
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--dark);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--green);
+  transition: width 0.4s ease;
+}
+
+.nav-links a:hover { color: var(--green); }
+.nav-links a:hover::after { width: 100%; }
+
+/* ─── HERO ─── */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-logo {
+  width: 110px;
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.2s forwards;
+}
+
+.hero-title {
+  font-size: clamp(30px, 4.5vw, 52px);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.4s forwards;
+}
+
+.hero-sub {
+  margin-top: 16px;
+  font-size: clamp(13px, 1.6vw, 16px);
+  color: var(--gray);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.6s forwards;
+}
+
+.hero-line {
+  width: 1px; height: 0;
+  background: var(--green);
+  position: absolute;
+  bottom: 48px;
+  animation: growLine 0.8s ease 1.2s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes growLine {
+  from { height: 0; opacity: 0; }
+  to { height: 72px; opacity: 1; }
+}
+
+/* ─── ABOUT ─── */
+.about {
+  padding: 140px 48px 160px;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.about p {
+  font-size: clamp(18px, 2.2vw, 23px);
+  line-height: 1.75;
+  color: var(--dark);
+  opacity: 0;
+  transform: translateY(32px);
+  transition: all 0.7s ease;
+}
+
+.about p.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── PILLARS ─── */
+.pillars {
+  padding: 120px 48px 140px;
+  background: var(--green);
+}
+
+.pillars-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.pillars-label {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 14px;
+}
+
+.pillars-title {
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 400;
+  color: white;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  max-width: 1280px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.08);
+}
+
+.pillar {
+  background: var(--green);
+  padding: 52px 36px;
+  opacity: 0;
+  transform: translateY(32px);
+  transition: all 0.6s ease;
+}
+
+.pillar.visible { opacity: 1; transform: translateY(0); }
+.pillar:hover { background: rgba(255,255,255,0.04); }
+
+.pillar-num {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 28px;
+}
+
+.pillar h3 {
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 400;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.pillar p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.7);
+}
+
+.pillar-link {
+  display: inline-block;
+  margin-top: 28px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 3px;
+  transition: all 0.3s;
+}
+
+.pillar-link:hover { color: white; border-color: white; }
+
+/* ─── CONTACT ─── */
+.contact {
+  padding: 140px 48px;
+  text-align: center;
+}
+
+.contact-inner {
+  max-width: 560px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(32px);
+  transition: all 0.7s ease;
+}
+
+.contact-inner.visible { opacity: 1; transform: translateY(0); }
+
+.contact-label {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 20px;
+}
+
+.contact h2 {
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.contact p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--gray);
+  margin-bottom: 36px;
+}
+
+.contact-btn {
+  display: inline-block;
+  padding: 14px 44px;
+  background: var(--green);
+  color: white;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+.contact-btn:hover {
+  background: var(--green-light);
+  transform: translateY(-2px);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 64px 48px;
+  background: var(--dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.footer-left { display: flex; flex-direction: column; gap: 14px; }
+.footer-logo { height: 44px; opacity: 0.75; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.04em; }
+
+.footer-links { display: flex; gap: 28px; }
+
+.footer-links a {
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover { color: white; }
+
+/* ─── MOBILE ─── */
+@media (max-width: 768px) {
+  nav { padding: 18px 24px; }
+  nav.scrolled { padding: 14px 24px; }
+  .nav-links { display: none; }
+  .hero-logo { width: 80px; margin-bottom: 32px; }
+  .about { padding: 80px 24px 100px; }
+  .pillars { padding: 80px 24px 100px; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .pillar { padding: 36px 28px; }
+  .contact { padding: 80px 24px; }
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    padding: 48px 24px;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <img class="nav-logo" src="mvm-logo-green.png" alt="Van Melkebeke LLC">
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#pillars">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <img class="hero-logo" src="mvm-logo-hero.png" alt="VM">
+  <h1 class="hero-title">Van Melkebeke</h1>
+  <p class="hero-sub">Art &middot; Sport &middot; Technology</p>
+  <div class="hero-line"></div>
+</section>
+
+<section class="about" id="about">
+  <p>
+    Van Melkebeke LLC is a New York-based holding company that builds and operates businesses across three pillars: art, sport, and consumer technology. The firm is founded and led by Maxime Van Melkebeke.
+  </p>
+</section>
+
+<section class="pillars" id="pillars">
+  <div class="pillars-header">
+    <div class="pillars-label">Portfolio</div>
+    <h2 class="pillars-title">Three Pillars</h2>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar">
+      <div class="pillar-num">01 &mdash; Art</div>
+      <h3>Art Advisory</h3>
+      <p>High-value private sales and secondary market brokerage for private collectors and foundations, powered by proprietary AI-driven market intelligence. Over a decade of transactional experience across Christie&rsquo;s, Skarstedt, Salon 94, and Hauser &amp; Wirth.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02 &mdash; Sport</div>
+      <h3>PARTNER MATCH</h3>
+      <p>A Slack-native tennis matching platform connecting players across all five boroughs and skill levels. Type /match, find a partner, get on court.</p>
+      <a class="pillar-link" href="https://partnermatch.io" target="_blank">partnermatch.io &rarr;</a>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03 &mdash; Technology</div>
+      <h3>Star Pixel Games</h3>
+      <p>An indie mobile studio making safe, ad-free, COPPA-compliant games for children ages 4 and up. Its debut title, Color Catcher, is live on both app stores with two more in development.</p>
+      <a class="pillar-link" href="https://starpixelgames.com" target="_blank">starpixelgames.com &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-label">Get in Touch</div>
+    <h2>Let&rsquo;s Talk</h2>
+    <p>Whether you&rsquo;re a collector, a potential partner, or simply curious about what we&rsquo;re building.</p>
+    <a class="contact-btn" href="mailto:m@vanmelkebeke.com">m@vanmelkebeke.com</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">
+    <img class="footer-logo" src="mvm-logo-white" alt="VM">
+    <span class="footer-copy">&copy; 2026 Van Melkebeke LLC &middot; New York</span>
+  </div>
+  <div class="footer-links">
+    <a href="https://partnermatch.io" target="_blank">PARTNER MATCH</a>
+    <a href="https://starpixelgames.com" target="_blank">Star Pixel Games</a>
+    <a href="mailto:m@vanmelkebeke.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.about p, .pillar, .contact-inner').forEach(el => {
+  observer.observe(el);
+});
+
+document.querySelectorAll('.pillar').forEach((el, i) => {
+  el.style.transitionDelay = (i * 0.12) + 's';
+});
+</script>
+
+</body>
+</html>
